@@ -6,7 +6,7 @@
 /*   By: haeskim <haeskim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 12:31:51 by haeskim           #+#    #+#             */
-/*   Updated: 2022/12/29 15:20:10 by haeskim          ###   ########.fr       */
+/*   Updated: 2023/01/05 20:09:36 by haeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
@@ -31,6 +33,8 @@ char	*ft_strchr(const char *s, int c)
 	i = 0;
 	new_c = (char)c;
 	new_s = (char *)s;
+	if (!s)
+		return (0);
 	while (new_s[i])
 	{
 		if (new_s[i] == new_c)
@@ -40,25 +44,6 @@ char	*ft_strchr(const char *s, int c)
 	if (new_s[i] == new_c)
 		return (&new_s[i]);
 	return (0);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t		i;
-	const char	*new_src;
-	char		*new_dst;
-
-	i = 0;
-	new_src = (const char *)src;
-	new_dst = (char *)dst;
-	if (!dst && !src)
-		return (0);
-	while (i < n)
-	{
-		*(new_dst + i) = *(new_src + i);
-		i++;
-	}
-	return (new_dst);
 }
 
 char	*ft_strdup(const char *s1)
@@ -107,6 +92,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 		j++;
 	}
-	return (ptr);
 	ptr[i] = '\0';
+	return (ptr);
 }
