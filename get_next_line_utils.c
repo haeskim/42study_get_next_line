@@ -6,7 +6,7 @@
 /*   By: haeskim <haeskim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 12:31:51 by haeskim           #+#    #+#             */
-/*   Updated: 2023/01/05 20:09:36 by haeskim          ###   ########.fr       */
+/*   Updated: 2023/01/06 17:36:00 by haeskim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,29 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	ptr[i] = '\0';
 	return (ptr);
+}
+
+char	*after_read_process(char **line, char *buf)
+{
+	char	*tmp_for_free;
+
+	if (!(*line[0]))
+	{	
+		free(*line);
+		*line = ft_strdup(buf);
+		if (!(*line))
+			return (0);
+	}
+	else
+	{
+		tmp_for_free = *line;
+		*line = ft_strjoin(*line, buf);
+		if (!(*line))
+		{
+			free(tmp_for_free);
+			return (0);
+		}
+		free(tmp_for_free);
+	}
+	return (*line);
 }
